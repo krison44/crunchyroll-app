@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { Media } from './medias/media.interface';
+import AppRouter from './App.router';
+import mediaStore from './store/MediaStore';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.PureComponent {
+  constructor(props: {medias: Media[]}) {
+    super(props);
+    mediaStore.fetchMedias();
+  }
+  
+  render() {
+    return (
+      <div className="container-fluid">
+        <AppRouter />
+      </div>
+    )
+  }
 }
 
 export default App;
